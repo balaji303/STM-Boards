@@ -27,7 +27,7 @@ int main(void){
 	 GPIOA->ODR &=~0x20;              //digitalWrite (13,low)
 	 delay(1);
 	if(i==3)
-      {
+                        {
 			RCC->AHB1RSTR |= 1;              //Reset register
 			}
 	}
