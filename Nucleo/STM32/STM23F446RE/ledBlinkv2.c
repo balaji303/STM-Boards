@@ -28,7 +28,7 @@ int main(void){
 	 delay(1);
 	if(i==3)
                         {
-			RCC->AHB1RSTR |= 1;              //Reset register
+			RCC->AHB1RSTR |= 1;              //Reset AHB1 bus register
 			}
 	}
  return 0;	
