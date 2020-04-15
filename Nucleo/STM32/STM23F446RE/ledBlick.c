@@ -17,7 +17,7 @@
 */
 #include "stm32f4xx.h"                  // Device header
 #define infinte 1
-void delay(int seconds);
+void delayMs(int seconds);
 int main(void){
 	 
 	RCC->AHB1ENR |= 1;                   // Enable AHB1 BUS which is connected to PA5 via GPIO port A 
@@ -25,15 +25,14 @@ int main(void){
 	
 	while(infinte){
 	 GPIOA->ODR |=0x20;               //digitalWrite (13,high) in bits 0000 0000 0000 0000 0000 0000 0010 0000
-	 delay(1);
+	 delayMs(1000);
 	 GPIOA->ODR &=~0x20;              //digitalWrite (13,low)
-	 delay(1);
+	 delayMs(1000);
 	}	
 }
 
-void delay(int seconds){
- int count,count1;
-	for(count=0;count<1000;count++){
-		for(count1=0;count1<3000;count1++);
+void delayMs(int seconds){
+	for(;seconds>0;seconds--){
+		for(int count1=0;count1<3000;count1++);
 	}
 }
