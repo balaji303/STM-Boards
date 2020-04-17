@@ -1,1 +1,3 @@
-
+If there is 'r' alone in datasheet we can only '&' that register
+As it a read register we can only read that we cant read in the register,
+In this USART_SR bit 7 is done by hardware only
