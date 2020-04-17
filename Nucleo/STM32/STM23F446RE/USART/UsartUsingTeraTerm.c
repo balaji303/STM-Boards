@@ -12,8 +12,8 @@
 // Function diagram and find AF pin number
 // Enable AF pin using Respective register
 // GPIOx_AFRL
-
-
+//Install Tera term and Select serial-> port aka COM5 (in mine)
+// Tera Term Official Link-> https://osdn.net/projects/ttssh2/releases/
 #include "stm32f4xx.h"                  // Device header
 void USART2_Init(void);
 void USART2_Write(char data);
