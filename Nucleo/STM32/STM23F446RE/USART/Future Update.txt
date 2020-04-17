@@ -1,1 +1,3 @@
-
+LED that glows when text is priented on screen,
+Press BUTTON to start write,
+After writting glow LED when write is over.
