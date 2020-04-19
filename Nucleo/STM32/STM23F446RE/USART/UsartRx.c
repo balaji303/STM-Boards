@@ -1,3 +1,4 @@
+
 #include "stm32f4xx.h"                  // Device header
 void delay(int sec);
 void Usart_Init(void);
@@ -27,8 +28,8 @@ void Usart_Init(void){
 }
 
 char Usart_Read(void){
-while(!(USART2->SR & 0x20)){}
-	return USART2->DR;
+while(!(USART2->SR & 0x20)){}    //Check the status register for Rx Buffer
+	return USART2->DR;       //Return Data registers
 }
 void delay(int sec){
 	for(;sec>0;sec--){
@@ -44,9 +45,9 @@ void Led_Init(void){
 void Led_play(int ch){
 	ch %=16;
 	for(;ch>0;ch--){
-	GPIOA->BSRR  |= 0x20 ;
+	GPIOA->BSRR  |= 0x20 ;      //Turn ON
 	delay(1000);
-	GPIOA->BSRR  |= 0x200000;
+	GPIOA->BSRR  |= 0x200000;   //Turn OFF
 	delay(1000);
 	}
 }
