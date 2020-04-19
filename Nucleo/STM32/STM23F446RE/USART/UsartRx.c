@@ -38,7 +38,7 @@ void delay(int sec){
 }
 void Led_Init(void){
 	//Led ->PA5->AHB1
-	RCC->AHB1ENR |= 0x1; //GPIOA enable
+	RCC->AHB1ENR |= 0x1;   //GPIOA enable
 	GPIOA->MODER |= 0x400; //Output enable 
 }
 
