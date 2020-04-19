@@ -1,1 +1,6 @@
+Don't Name like this
 
+A fatal error occured while Using STM32 while i named like this count1=0;
+While using this in for loop,
+
+for(;count1<3000;count1++);
