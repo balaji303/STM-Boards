@@ -1,1 +1,4 @@
 
+Prescalar counts the number of clocksignal rises and executes an action.
+In simple: Its like a counter in for loop counting the number of times 
+   the loop goes.
