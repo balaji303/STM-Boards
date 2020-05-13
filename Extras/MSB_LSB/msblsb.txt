@@ -1,1 +1,15 @@
+MSB- Most Significant Bit
+LSB- Least Significant Bit
 
+        1100101 - LSB
+        `
+     MSB
+     
+     
+     story--
+     $732158
+     
+     If i change the 7 to 6 it affects you the most
+     If i change the 8 to 7 it affects you the Least
+     
+     Here comes the MSB and LSB
