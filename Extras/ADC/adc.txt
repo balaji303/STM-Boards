@@ -1,1 +1,9 @@
 
+
+Getting Voltage from analog value
+max_volt_arduino_read= 5.0
+max_8_bit_data=1023.0 (Considering Zero as value)
+
+float volts = analog * (max_volt_arduino_read / max_8_bit_data);
+
+float volts = analog * (5.0 / 1023.0);
