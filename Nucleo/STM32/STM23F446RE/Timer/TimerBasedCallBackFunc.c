@@ -1,6 +1,12 @@
 
 /*
 Timer based Period elapsed call back function
+Enable Timer for the LED PIN here timer2
+Clock-48MHz
+Prescalar-48,000
+Counter Period- 1000
+Trigger Event Selection-Update event
+Enable global interrupt-Check
 */
 /* USER CODE BEGIN Header */
 /**
