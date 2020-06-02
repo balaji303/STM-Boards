@@ -1,4 +1,9 @@
-//Button PIN is given as GPIO_Exti13 and led pin is given as gpio out 
+/*Button PIN is given as GPIO_Exti13 and led pin is given as gpio out 
+ 1.Check for external interrupt maping in the reference manual
+ 2.Enable corresponding interrupt and tick in parameter section
+ 3.weak means customizable function
+ 4.Turn GPIO on when buttton is pressed because interrupt occurs
+*/
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
