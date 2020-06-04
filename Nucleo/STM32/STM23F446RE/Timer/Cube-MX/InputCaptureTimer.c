@@ -1,3 +1,9 @@
+/*
+1.Enable TIM2_CH1
+2.Enable internal clk, channel 1-> input capture direct mode
+3.Prescalar->4000, internal clock division-> 1000 , polarity selection-> rising edge, prescalar -> no direction, 
+  IC selection-> Direct, I/P filter-> 10
+*/
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
