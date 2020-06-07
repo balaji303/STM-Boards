@@ -1,6 +1,7 @@
 /*
 Select ADC mode in pin
 Continous conversion mode can be enabled in Parameter setting
+even works if disabled
 */
 /* USER CODE BEGIN Header */
 /**
