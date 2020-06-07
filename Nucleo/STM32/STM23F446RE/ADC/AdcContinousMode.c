@@ -1,3 +1,6 @@
+/*
+Continous conversion is enabled
+*/
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
