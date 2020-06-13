@@ -1,4 +1,17 @@
 /* USER CODE BEGIN Header */
+/*
+1.Select ADC
+2.External Trigger Conversion source-> Time2 Trigger Out Event
+3.Sampling Time-> 84 Cycle
+4.Enable global interrupt
+5.Prescalar->4800; 
+6.Internal cycle-50;
+7.Start Timer-> HAL_TIM_Base_Start
+8.INterrupt start we ticked the checkbox for global interrupt so HAL_ADC_Start_IT
+9.Global varible: Sensor value
+10.Interrupt so callback function: HAL_ADC_ConColtCallBack
+11.Get value inside callback function
+*/
 /**
   ******************************************************************************
   * @file           : main.c
