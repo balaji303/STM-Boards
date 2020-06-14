@@ -1,6 +1,6 @@
 /*
 Continous conversion is enabled
-Other changes are same as AdcSingleMode->Nucleo/STM32/STM23F446RE/ADC/AdcSingleMode.c
+Other changes are same as AdcSingleMode->Nucleo/STM32/STM23F446RE/ADC/AdcSingleMode.c (check this file)
 */
 /* USER CODE BEGIN Header */
 /**
