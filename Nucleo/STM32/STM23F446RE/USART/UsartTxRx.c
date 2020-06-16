@@ -32,23 +32,23 @@ fprintf(stderr,"The test for stdin is successfully completed\r\n");
 }
 
 void Usart_Init(void){
-	  RCC->AHB1ENR |=0x1;     //Enable GPIOA bus
-		RCC->APB1ENR |=0x20000; //Enable USART2 bus
-	  GPIOA->MODER |=0xA0;    //Enable PA2,PA3 alternate function on pin
-		GPIOA->AFR[0]|=0x7700;  //Enable alternate function
+	  RCC->AHB1ENR |=0x1;                //Enable GPIOA bus
+		RCC->APB1ENR |=0x20000;      //Enable USART2 bus
+	  GPIOA->MODER |=0xA0;               //Enable PA2,PA3 alternate function on pin
+		GPIOA->AFR[0]|=0x7700;       //Enable alternate function
 	
-	  USART2->BRR  |=0x683;  //9600
+	  USART2->BRR  |=0x683;             //9600
 		USART2->CR1	 |=0XC;     //ENABLE TX and RX
-		USART2->CR1	 |=0x2000;	//ENABLE USART2
+		USART2->CR1	 |=0x2000;  //ENABLE USART2
 }
 
-int Usart_Write(int value){    			//Tx
+int Usart_Write(int value){    		    //Tx
     while(!(USART2->SR & 0x80)){}
 		USART2->DR = (value & 0xFF);
 		return value;
 }
 
-int Usart_Read(void){								//Rx
+int Usart_Read(void){			    //Rx
 	  while(!(USART2->SR & 0x20)){}
 		return USART2->DR;
 }
