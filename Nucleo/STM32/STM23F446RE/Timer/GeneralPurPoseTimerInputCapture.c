@@ -13,18 +13,18 @@ TIM3_CH1->PA6
 int timestamp=0;
 int main(void){
 	
-	RCC->AHB1ENR |=0x1;                   //Enable GPIOA
-	GPIOA->MODER |=0x800;                 //Alternate function @ PA5
-	GPIOA->AFR[0] |=0x100000;             //Enable TIM2 as alternate function
+	RCC->AHB1ENR |=0x1;                 //Enable GPIOA
+	GPIOA->MODER |=0x800;             //Alternate function @ PA5
+	GPIOA->AFR[0] |=0x100000;        //Enable TIM2 as alternate function
 	
-	RCC->APB1ENR |=0x1;                   //Enable bus for TIMER2
-	TIM2->PSC = 1600-1;                   //Prescalar 16MHz/1600=10k
-	TIM2->ARR = 10000-1;                  //Auto Reset Register 10k/10k=1 sec ~ 1 MHz
-	TIM2->CCMR1 = 0x30;										//ENABLE Toggle on
+	RCC->APB1ENR |=0x1;                //Enable bus for TIMER2
+	TIM2->PSC = 1600-1;                 //Prescalar 16MHz/1600=10k
+	TIM2->ARR = 10000-1;               //Auto Reset Register 10k/10k=1 sec ~ 1 MHz
+	TIM2->CCMR1 = 0x30;	       //ENABLE Toggle on
 	TIM2->CCR1  = 0;                      //Set match value
 	TIM2->CCER = 1;                       //Enable ch1 comepare mode
-	TIM2->CNT = 0;												//Clear Counter
-	TIM2->CR1 = 1; 												//ENABLE TIM2
+	TIM2->CNT = 0;		       //Clear Counter
+	TIM2->CR1 = 1; 		       //ENABLE TIM2
 	
 	//Timer3
 	RCC->AHB1ENR |=0x1;                   //Enable GPIOA
