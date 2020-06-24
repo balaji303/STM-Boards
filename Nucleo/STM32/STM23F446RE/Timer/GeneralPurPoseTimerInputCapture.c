@@ -2,6 +2,7 @@
 /*
 Toggle LED every 1 sec from TIM2_CH1
 reading the value from PA5 to PA6 (Timer caputure)
+We are measuring the toggle rate of PA5 and connecting the toggle rate to PA6
 
 TIM2 ->APB1
 TIM2_CH1->PA5
