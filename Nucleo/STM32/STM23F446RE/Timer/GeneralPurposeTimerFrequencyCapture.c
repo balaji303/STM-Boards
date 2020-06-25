@@ -2,6 +2,7 @@
 AHB1 bus->GPIOA-> PA5->LED toggle and toggle is measured by 
 AHB1 bus->GPIOA->PA6 outputs the toggle period and frequency
 timer starts to count from CNT=0
+when the counter reached ARR the counter matches and starts to count once again
 */
 
 #include "stm32f4xx.h"                  // Device header
