@@ -6,7 +6,7 @@ GPIOA->AHB1 bus
 */
 
 #include "stm32f4xx.h"                  // Device header
-#include "delay.h"
+//#include "delay.h"                    //Own header file for delay function
 int main(void){
 	RCC->AHB1ENR |=0x1;                   //GPIOA enable
 	GPIOA->MODER |=0X400;                 //Enable PA5 output mode
