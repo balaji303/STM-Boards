@@ -22,5 +22,5 @@ void systickDelay(int seconds){
 	for(int i=0;i<seconds; i++){
 		while(!(SysTick->CTRL & 0x10000)){}
 	}
-	//SysTick->CTRL = 0;
+	SysTick->CTRL = 0;      //Resets systick delay
 }
