@@ -1,6 +1,8 @@
 /*
 PA3->Usart RX
 PA5->LED
+
+Input using Termianl Tools like TeraTerm
 */
 #include "stm32f4xx.h"                  // Device header
 void Usart2Init(void);
