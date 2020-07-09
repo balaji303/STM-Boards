@@ -1,5 +1,5 @@
 /*
-Create a interrput function when button is pressed
+Create a interrput function when button is leaving
 LED toggles and count value increses
 */
 #include "stm32f4xx.h"                  // Device header
