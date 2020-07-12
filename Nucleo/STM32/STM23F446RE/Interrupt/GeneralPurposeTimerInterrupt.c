@@ -1,6 +1,7 @@
 /*
 16MHz clock
 */
+//With TIM2
 /*
 #include "stm32f4xx.h"                  // Device header
 
