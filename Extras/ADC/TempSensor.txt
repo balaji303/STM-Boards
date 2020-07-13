@@ -1,1 +1,9 @@
+Temperature (in °C) = {(V SENSE – V 25 ) / Avg_Slope} + 25
 
+Where:
+
+– V 25 = V SENSE value for 25° C
+
+– Avg_Slope = average slope of the temperature vs. V SENSE curve (given in mV/°C or µV/°C)
+
+according to the datasheet of the stm32f407vetx, the voltage at 25degree is 0.76V and the avg_slop is 2.5mV/C
