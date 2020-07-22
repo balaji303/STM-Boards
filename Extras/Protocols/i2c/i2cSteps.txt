@@ -1,1 +1,24 @@
+Steps to be followed in I2C while using STM Boards
 
+
+1. Wait till byte transfer finished
+2. Set Start Generation
+3.Wait till start condition is set
+       3.1 The device that generates start is Master
+       3.2 The device that generates stop is Slave
+4.Data register is loaded with slave address in write mode (<<1)
+5. Wait till address is set
+6. Load status register to a variable
+7. Wait till data register is empty
+8. Load master address to data register
+9. Wait till data register is empty
+10. Start Generationn
+11. Wait till start bit condition is unset
+12. Send slave address to data register in read mode (<<1 | 1)
+13. Wait till address is send
+14. Enable Acknowledgement
+15. Clear the address flag by copying status register to the temp variable
+16.Stop generation
+17.Data register not empty
+18.Get the data from the data register one by one 
+19. return 0
