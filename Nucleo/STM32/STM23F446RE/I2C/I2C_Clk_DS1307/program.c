@@ -29,6 +29,15 @@ void i2cInit(void){
 	GPIOB->OTYPER|=0x300;  //Making Both as Open-Drain (HIGH-> 0v; LOW-> Floating value)
 	
 	GPIOB->PUPDR|=0x50000; //Pull-up PB8 and PB9
-	//I2C config
 	
+	//I2C config
+	I2C1->CR1|=0x8000; //I2C1 is connected to PB and PB9, so I2C1 is software reset
+	
+	I2C1->CR2|=0x10;  //I2C1 is Frequency is set at 10MHz
+	
+	I2C1->CCR = 80;  //standard mode 100kHz clock
+	
+	I2C1->TRISE = 17; //Max Trigger Rise edge duration
+	
+	I2C1->CR1|=0x1; //Enable Peripharals
 }
