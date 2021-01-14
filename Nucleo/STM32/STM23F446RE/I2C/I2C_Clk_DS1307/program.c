@@ -11,7 +11,10 @@ PIN's used
 SCL-PB8
 SDA-PB9
 */
+
 #include "stm32f4xx.h"                  // Device header
+
+#define SLAVEADDR 0x68
 
 int main(void){
 	
@@ -33,11 +36,35 @@ void i2cInit(void){
 	//I2C config
 	I2C1->CR1|=0x8000; //I2C1 is connected to PB and PB9, so I2C1 is software reset
 	
-	I2C1->CR2|=0x10;  //I2C1 is Frequency is set at 10MHz
+	I2C1->CR2|=0x10;  //I2C1 is Frequency is set at 10MHz, [XTAL 10MHz]
 	
 	I2C1->CCR = 80;  //standard mode 100kHz clock
 	
 	I2C1->TRISE = 17; //Max Trigger Rise edge duration
 	
 	I2C1->CR1|=0x1; //Enable Peripharals
+}
+
+
+int i2cdata(char saeaddr, char mtraddr, char *data){
+	
+	volatile int temp;
+	
+	while(I2C1->SR2 & 2){    //If bus is busy, enters the loop	
+		
+		I2C1->CR1 |= 0x100;    //Start condition for I2C
+	}
+	//while(!(I2C1->SR1 & 1)){}		//Start Master mode udemy
+	while(I2C1->SR1 ==0){};		//Start Master mode balaji
+		
+	I2C1->DR = saeaddr <<1;		//slave address is written in Data register 
+	while(!(I2C1->SR1 & 2)){}; 	//0-No end of address transmission, 1-End of address tranmission
+	
+	temp=I2C1->SR2;  					//Copy Status register value to temp variable
+		
+	while(!(I2C1->SR1 & 80)){};		//wait till data register is empty| 0-not empty | 1-Empty
+	/*
+1. I2C1->SR1 is 0, so while(!(I2C1->SR1 & 80)) = 1, enters loop
+2. after few times I2C1->SR1 is 1, so while(!(I2C1->SR1 & 80)) = 0, exits loop
+  */		
 }
