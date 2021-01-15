@@ -16,7 +16,25 @@ SDA-PB9
 
 #define SLAVEADDR 0x68
 
+int i2cdata(char saeaddr, char mtraddr, char *data);
+void i2cInit(void);
+void delay(int msec);
+void Ledinit(void);
+
 int main(void){
+	char secdata;
+	Ledinit();
+	i2cInit();
+	while(1){
+	i2cdata(SLAVEADDR,0,&secdata);
+		if(secdata & 1){
+			GPIOA->ODR|=0x20;
+		}
+		else{
+			GPIOA->ODR&=~0x20;
+		}
+		delay(10);
+	}
 	
 }
 
@@ -46,6 +64,7 @@ void i2cInit(void){
 }
 
 
+
 int i2cdata(char saeaddr, char mtraddr, char *data){
 	
 	volatile int temp;
@@ -54,10 +73,10 @@ int i2cdata(char saeaddr, char mtraddr, char *data){
 		
 		I2C1->CR1 |= 0x100;    //Start condition for I2C
 	}
-	//while(!(I2C1->SR1 & 1)){}		//Start Master mode udemy
-	while(I2C1->SR1 ==0){};		//Start Master mode balaji
+	while(!(I2C1->SR1 & 1)){}		//Start Master mode. wait till start condition is set
+	//while(I2C1->SR1 ==0){};		//Start Master mode balaji
 		
-	I2C1->DR = saeaddr <<1;		//slave address is written in Data register 
+	I2C1->DR = saeaddr <<1;		//slave address+write is written in Data register, As slave address is 7bit mode left shift 
 	while(!(I2C1->SR1 & 2)){}; 	//0-No end of address transmission, 1-End of address tranmission
 	
 	temp=I2C1->SR2;  					//Copy Status register value to temp variable
@@ -67,4 +86,40 @@ int i2cdata(char saeaddr, char mtraddr, char *data){
 1. I2C1->SR1 is 0, so while(!(I2C1->SR1 & 80)) = 1, enters loop
 2. after few times I2C1->SR1 is 1, so while(!(I2C1->SR1 & 80)) = 0, exits loop
   */		
+	I2C1->DR = mtraddr;			//Master address is sent to data register
+		
+	while(!(I2C1->SR1 & 80)){};		//wait till data register is empty| 0-not empty | 1-Empty
+		
+	I2C1->CR1|=0x100;		//Repeated Start Generation
+		
+	while(!(I2C1->SR1 & 1)){}		//wait till start flag is set
+		
+	I2C1->DR=saeaddr<<1 |1; //Address flog is sent in read and write mode
+		
+	while(!(I2C1->SR1 & 2)){}; 	//0-No end of address transmission, 1-End of address tranmission
+		I2C1->CR1|=0X400;         //Enable Acknowledgement
+		temp=I2C1->SR2;  					//Copy Status register value to temp variable
+		
+		I2C1->CR1|=0x200;					//Stop condition
+		
+	while(!(I2C1->SR1 & 40)){}; 	//Wait till RxNe is set 0-Data register empty| 1-Data register not empty
+		
+		*data++=I2C1->DR;
+		
+		return 0;
+}
+
+
+void Ledinit(void){ //LED is connected to PA5
+	RCC->AHB1ENR|=0x1; //	Enalbe BUS for PA5
+	GPIOA->MODER|=0x400; //Enable BUS for 
+	GPIOA->ODR|=0x20; //Set LED
+	GPIOA->ODR&=~0x20;//Reset LED
+}
+
+
+void delay(int msec){				//sudo delay function for 10MHz
+		for(;msec>0;msec--){
+			for(int i=0;i<3195;i++);
+		}
 }
