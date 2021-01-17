@@ -43,13 +43,13 @@ void Usart_Init(void){
 }
 
 int Usart_Write(int value){    		    //Tx
-    while(!(USART2->SR & 0x80)){}
+    while(!(USART2->SR & 0x80)){}	    //Wait till data is not transfered to the shift register
 		USART2->DR = (value & 0xFF);
 		return value;
 }
 
 int Usart_Read(void){			    //Rx
-	  while(!(USART2->SR & 0x20)){}
+	  while(!(USART2->SR & 0x20)){}	    //Wait till data is not receieved
 		return USART2->DR;
 }
 
