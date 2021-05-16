@@ -47,7 +47,7 @@ void i2cInit(void){
 	
 	GPIOB->AFR[1]|=0x44;   //Enable I2C as alternate function for PB8 and PB9
 	
-	GPIOB->OTYPER|=0x300;  //Making Both as Open-Drain (HIGH-> 0v; LOW-> Floating value)
+	GPIOB->OTYPER|=0x300;  //Making Both as Open-Drain (HIGH-> 0v; LOW-> Floating value, so pull up resistor is added in I2C, which makes the logic 1 from the pull up resister when the PIN is low and zero when high)
 	
 	GPIOB->PUPDR|=0x50000; //Pull-up PB8 and PB9
 	
@@ -94,7 +94,7 @@ int i2cdata(char saeaddr, char mtraddr, char *data){
 		
 	while(!(I2C1->SR1 & 1)){}		//wait till start flag is set
 		
-	I2C1->DR=saeaddr<<1 |1; //Address flog is sent in read and write mode
+	I2C1->DR=saeaddr<<1 |1; //Address flag is sent in read and write mode
 		
 	while(!(I2C1->SR1 & 2)){}; 	//0-No end of address transmission, 1-End of address tranmission
 		I2C1->CR1|=0X400;         //Enable Acknowledgement
